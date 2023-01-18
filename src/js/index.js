@@ -17,7 +17,7 @@ async function onFormSubmit(event) {
   event.preventDefault();
   searchInput = event.target.searchQuery.value;
   currentPage = 1;
-  if (searchInput.trim === '') {
+  if (!searchInput.trim()) {
     alertNoImagesFound();
     return;
   }
@@ -30,7 +30,7 @@ async function onFormSubmit(event) {
     loadMoreButton.classList.add('is-hidden');
   }
   try {
-    if (response.totalHits > 0) {
+    if (response.totalHits) {
       Notiflix.Notify.success(`Hooray! We found ${response.totalHits} images.`);
       galleryEl.innerHTML = '';
       createMarkupImages(response.hits);
@@ -46,7 +46,7 @@ async function onFormSubmit(event) {
       });
     }
 
-    if (response.totalHits === 0) {
+    if (!response.totalHits) {
       galleryEl.innerHTML = '';
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
