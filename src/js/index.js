@@ -8,6 +8,7 @@ const formEl = document.querySelector('.search-form');
 const galleryEl = document.querySelector('.gallery');
 const loadMoreButton = document.querySelector('.load-more');
 
+let searchInput = '';
 let currentPage = 1;
 let currentHits = 0;
 
